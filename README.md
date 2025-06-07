@@ -85,8 +85,8 @@ streamlit run streamlit_app/app.py
 * SHAP **waterfall plot** to explain individual prediction
 * Compact SHAP visuals (6x4") with top 8 feature impacts
 
-![Predict Tab – Input Features](Images/Streamlit_App_UI1.jpg)  
-![Predict Tab – Prediction Result](Images/Streamlit_App_UI2.jpg)  
+![Predict Tab – Input Features](Images/App_UI1.jpg)  
+![Predict Tab – Prediction Result](Images/App_UI2.jpg)  
 
 
 
@@ -96,9 +96,9 @@ streamlit run streamlit_app/app.py
 * **Classification Report** shown as a styled table
 * Evaluates model performance across full dataset
 
-![Dashboard Tab – SHAP Waterfall](Images/Streamlit_App_UI3.jpg)
-![Dashboard Tab – Confusion Matrix](Images/Streamlit_App_UI4.jpg)  
-![Dashboard Tab – Classification Report](Images/Streamlit_App_UI5.jpg)
+![Dashboard Tab – SHAP Waterfall](Images/App_UI3.jpg)
+![Dashboard Tab – Confusion Matrix](Images/App_UI4.jpg)  
+![Dashboard Tab – Classification Report](Images/App_UI5.jpg)
 
 ---
 
