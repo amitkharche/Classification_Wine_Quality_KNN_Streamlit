@@ -1,169 +1,200 @@
 
+
+---
+
 # 🍷 Wine Quality Prediction using K-Nearest Neighbors (KNN)
 
-This end-to-end machine learning project predicts **wine quality scores** using the **K-Nearest Neighbors (KNN)** algorithm. It includes:
+This end-to-end machine learning project predicts **wine quality scores** using the **K-Nearest Neighbors (KNN)** algorithm. It covers:
 
-✅ Exploratory Data Analysis  
-✅ Data Preprocessing & Feature Scaling  
-✅ GridSearchCV-based Hyperparameter Tuning  
-✅ Model Evaluation and Performance Visualization  
-✅ SHAP Explainability for Individual Predictions  
-✅ Streamlit App with Dashboard  
-✅ Dockerfile, GitHub CI/CD, and Cloud Deployment Support
-
----
-
-## 📸 Demo Snapshots
-
-| 🔮 SHAP-based Prediction | 📊 Performance Dashboard |
-|--------------------------|--------------------------|
-| ![SHAP GIF](assets/shap_demo.gif) | ![Dashboard GIF](assets/dashboard_demo.gif) |
-
-> ⚠️ Replace above paths with your actual GitHub `raw` file URLs if deploying online.
+✅ Clean Data Preprocessing & Feature Scaling
+✅ GridSearchCV-based Hyperparameter Tuning
+✅ Evaluation Metrics + Confusion Matrix
+✅ SHAP Explainability for Predictions
+✅ Real-time Streamlit App Interface
+✅ Docker & GitHub CI/CD Integration
 
 ---
 
-## 🗂️ Project Structure
+## Project Structure
 
 ```
 wine-quality-knn-project/
 ├── data/                    # Dataset CSV
-├── models/                  # Saved KNN model and scaler
-├── output/                  # Evaluation reports and plots
-├── scripts/                 # Modular Python scripts
-│   ├── preprocess.py
-│   ├── train.py
-│   ├── evaluate.py
-├── notebooks/              # EDA + modeling notebook
-├── streamlit_app/          # Streamlit UI app
-├── .github/workflows/      # GitHub CI workflow
-├── Dockerfile              # Docker build file
-├── docker-compose.yml      # Docker Compose config
-├── requirements.txt        # Project dependencies
-└── README.md               # Project overview and usage
+├── models/                  # Saved KNN model
+├── output/                  # Evaluation reports and confusion matrix image
+├── scripts/                 # Modular ML scripts
+│   ├── preprocess.py        # Data loading and scaling
+│   ├── train.py             # Model training pipeline
+│   ├── evaluate.py          # Model evaluation and reporting
+├── streamlit_app/
+│   └── app.py               # Streamlit interface
+├── requirements.txt         # Python dependencies
+├── Dockerfile               # Docker build file
+├── docker-compose.yml       # Docker Compose config
+├── .github/workflows/ci.yml# GitHub CI config
+└── README.md                # Project overview and usage
 ```
 
 ---
 
-## 📦 Setup Instructions
+## Setup Instructions
 
-### 1️⃣ Install Dependencies
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/amitkharche/Classification_Wine_Quality_KNN_Streamlit.git
+cd Classification_Wine_Quality_KNN_Streamlit
+```
+
+### 2. Install Dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2️⃣ Train the Model (With GridSearch)
+### 3. Train the Model
+
 ```bash
+# With GridSearchCV hyperparameter tuning
 python scripts/train.py --use_grid_search
+
+# Or with default K=5
+python scripts/train.py
 ```
 
-### 3️⃣ Evaluate the Model
+### 4. Evaluate the Model
+
 ```bash
 python scripts/evaluate.py
 ```
 
-### 4️⃣ Launch Streamlit App
+### 5. Launch Streamlit App
+
 ```bash
 streamlit run streamlit_app/app.py
 ```
 
 ---
 
-## 🌐 Streamlit App Features
+## Streamlit App Features
 
-### 🔢 Real-Time Prediction Tab:
-- Takes 11 wine features as input
-- Displays predicted `quality` score
-- Visual SHAP waterfall plot to explain input impact
+### Predict Tab
 
-### 📊 Dashboard Tab:
-- Confusion matrix heatmap
-- Classification report (accuracy, precision, recall, F1)
-- Supports full test-set predictions from saved model
+* Responsive **3-column layout** for entering wine features
+* Predicts wine `quality` score using the trained KNN model
+* SHAP **waterfall plot** to explain individual prediction
+* Compact SHAP visuals (6x4") with top 8 feature impacts
+
+### Dashboard Tab
+
+* **Confusion Matrix** heatmap with larger font for clarity
+* **Classification Report** shown as a styled table
+* Evaluates model performance across full dataset
+
+### APP UI
+
+<p align="center">
+  <img src="Images/Streamlit%20App_UI1.jpg" alt="Predict Tab" width="600"/>
+</p>
+<p align="center">
+  <img src="Images/Streamlit%20App_UI2.jpg" alt="Predict Tab" width="600"/>
+</p>
+<p align="center">
+  <img src="Images/Streamlit%20App_UI3.jpg" alt="Dashboard Tab" width="600"/>
+</p>
+<p align="center">
+  <img src="Images/Streamlit%20App_UI4.jpg" alt="Dashboard Tab" width="600"/>
+</p>
+<p align="center">
+  <img src="Images/Streamlit%20App_UI5.jpg" alt="Dashboard Tab" width="600"/>
+</p>
+
 
 ---
 
-## 🧠 SHAP Explainability
+## SHAP Explainability
 
-- Uses `shap.Explainer` to analyze how each input feature affects model output
-- Waterfall plot shows direction and magnitude of each feature's influence
-- Helps users interpret **why** the model predicted a certain wine quality
+* `shap.Explainer()` used with KNN model for interpretability
+* Highlights which features most influenced the predicted score
+* Waterfall plot helps understand individual predictions
 
 ---
 
-## 🐳 Docker Setup
+## Docker Setup
 
-### Build & Run Manually
+### Manual Docker Build
+
 ```bash
 docker build -t wine-knn-app .
 docker run -p 8501:8501 wine-knn-app
 ```
 
-### With Docker Compose
+### Docker Compose
+
 ```bash
 docker-compose up --build
 ```
 
 ---
 
-## 🤖 CI/CD Pipeline (GitHub Actions)
+## CI/CD Pipeline (GitHub Actions)
 
-Basic CI is configured to:
-- Run model training on every push
-- Can be extended to include test suite, linting, deployment
+Your CI pipeline can:
 
-`.github/workflows/ci.yml`
+* Automatically retrain the model
+* Generate evaluation metrics
+* Be extended to include testing, linting, deployment
 
----
+Located at:
 
-## 🧪 Dataset Source
-
-- UCI Wine Quality Dataset  
-- [Link to Dataset](https://archive.ics.uci.edu/ml/datasets/Wine+Quality)  
-- Features: acidity, sugar, alcohol, etc.  
-- Target: `quality` score (integer 0–10)
-
----
-
-## 🛠 Future Enhancements
-
-- [ ] Compare KNN with RandomForest, LightGBM
-- [ ] Add model drift detection module
-- [ ] Deploy to Streamlit Cloud or HuggingFace Spaces
-- [ ] Use MLflow for experiment tracking
-
----
-
-## 🖼 Screenshots (Optional)
-
-Add screenshots or screen recordings to the `assets/` folder:
 ```
-assets/
-├── shap_demo.gif
-├── dashboard_demo.gif
+.github/workflows/ci.yml
 ```
 
 ---
 
-## ☁️ Deploy on Streamlit Cloud
+## Dataset Information
 
-1. Push this repo to GitHub
-2. Go to [streamlit.io/cloud](https://streamlit.io/cloud)
-3. Connect your repo and set:
-   - Main file: `streamlit_app/app.py`
-   - Dependencies: `requirements.txt`
+* **Source**: [UCI Wine Quality Dataset](https://archive.ics.uci.edu/ml/datasets/Wine+Quality)
+* **Features**: acidity, chlorides, alcohol, pH, etc.
+* **Target**: Wine `quality` (integer values)
 
 ---
 
-## 📄 License
+## Future Enhancements
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
-
----
-
-## 🤝 Contributing
-
-Open issues and submit pull requests for improvements, bug fixes, or new features. Contributions are welcome!
+* [ ] Compare KNN with RandomForest, LightGBM, XGBoost
+* [ ] Streamlit Cloud or HuggingFace Spaces deployment
+* [ ] MLflow tracking integration
+* [ ] Add LIME or SHAP bar visualizations
+* [ ] REST API with FastAPI or Flask
 
 ---
 
+## License
+
+Licensed under the **MIT License**.
+See [`LICENSE`](LICENSE) for full terms.
+
+---
+
+## Contributing
+
+Contributions are welcome!
+If you'd like to improve the project, feel free to:
+
+* ⭐ Star the repo
+* 🐞 Open issues for bugs or feature requests
+* 📦 Submit pull requests for enhancements
+
+---
+
+## 📬 Contact
+
+Have questions or want to collaborate? Connect with me:
+
+* [LinkedIn](https://www.linkedin.com/in/amit-kharche)
+* [Medium](https://medium.com/@amitkharche14)
+* [GitHub](https://github.com/amitkharche)
+
+---
