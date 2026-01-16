@@ -183,8 +183,8 @@ If you'd like to improve the project, feel free to:
 
 Have questions or want to collaborate? Connect with me:
 
-* [LinkedIn](https://www.linkedin.com/in/amit-kharche)
-* [Medium](https://medium.com/@amitkharche14)
+* [LinkedIn](https://www.linkedin.com/in/amitkharche)
+* [Medium](https://medium.com/@amitkharche)
 * [GitHub](https://github.com/amitkharche)
 
 ---
